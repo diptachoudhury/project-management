@@ -1,0 +1,39 @@
+# Node.js dependencies for both backend and frontend
+/backend/node_modules/
+/frontend/node_modules/
+
+# Environment variables for both backend and frontend
+/backend/.env
+/backend/.env.local
+/backend/.env.development.local
+/backend/.env.test.local
+/backend/.env.production.local
+
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# Common build artifacts (adjust if your build outputs go elsewhere)
+/backend/build/
+/backend/dist/
+/frontend/build/
+/frontend/dist/
+# Add specific build output folders if using frameworks like Next.js, Nuxt.js etc.
+# /frontend/.next/
+# /frontend/.nuxt/
+# /frontend/out/
+
+# Node.js specific logs and caches
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+
+# IDE and OS specific files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
