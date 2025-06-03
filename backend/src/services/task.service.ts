@@ -19,7 +19,7 @@ export const createTask = async ( taskData: {
     });
 };
 
-export const  updatedTask = async(
+export const  updateTaskStatus  = async(
     taskId: string,
     status:"todo" | "in-progress" | "done"
 ) => {
