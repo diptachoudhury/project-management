@@ -15,7 +15,7 @@ export const createTask = async ( taskData: {
         description: taskData.description,
         project: taskData.projectId,
         reporter: taskData.reporterId,
-        priority: taskData.projectId || "medium"
+        priority: taskData.priority || "medium"
     });
 };
 

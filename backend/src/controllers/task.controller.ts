@@ -1,12 +1,16 @@
 import { Request, Response} from 'express';
 import { createTask, updateTaskStatus, assignTask, getTaskByProject } from '../services/task.service';
-
-export const createNewTask = async (req: Request, res: Response) => {
+import { IGetUserAuthInfoRequest } from '../types/express';
+export const createNewTask = async (req: IGetUserAuthInfoRequest, res: Response) => {
  try{
+
+        if (!req.user) {
+      throw new Error('Not authenticated');
+    }
     const task = await createTask({
         ...req.body,
-        reporterId: req.user._id,
-        projectId: req.params.projectid,
+        reporterId: req.user?._id.toString(),
+        projectId: req.params.projectId,
     });
 
     res.status(201).json({success: true, data: task});
