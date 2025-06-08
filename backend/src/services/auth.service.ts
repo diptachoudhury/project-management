@@ -1,37 +1,59 @@
-
-import { IUser } from "../models/User";
-import { User } from "../models/User";
-import jwt from "jsonwebtoken";
-
-
-const JWT_SECRET = process.env.JWT_SECRET || "secret123";
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "7d";
-
-export const signToken = (id:any) => {
-    return jwt.sign({ id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-}
+import User from '../models/user.model';
+import { JWT_SECRET, JWT_EXPIRES_IN } from '../config/jwt';
+import jwt from 'jsonwebtoken';
+import { Document, Types  } from 'mongoose'
 
 
-export const registerUser = async (userData: {
+
+interface IUser extends Document {
+    _id: Types.ObjectId;
     name: string;
     email: string;
     password: string;
-}) : Promise<{ user: IUser; token:string }> =>{
-
-    const { name, email, password } = userData;
-    const user = await User.create({ name, email, password});
-    const token = signToken(user._id);
-    return { user, token};
+    domain: string;
+    comparePassword(candidatePassword: string) : Promise<boolean>; 
 }
 
-export const loginUser = async (email: string, password: string ) => {
-    const  user = await User.findOne({email}).select("+password");
-    if(!user || !(await user.comparePassword(password))) {
-        throw new Error("Invalid email or password");
-    }
+ interface JwtPayload {
+  userId: string;
+  domain: string;
+}
 
-    const token =signToken(user._id);
-    return { user, token };
+//register user fn
+export const registerUser = async (name: string, email: string, password: string, domain: string): Promise<IUser> => {
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new Error('Email already in use');
+  }
+
+  const user = new User({ name, email, password, domain });
+  await user.save();
+  return user;
+};
 
 
-} 
+//login--fn
+export const loginUser = async (email: string, password: string): Promise<string> => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error('Invalid credentials');
+  }
+
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    throw new Error('Invalid credentials');
+  }
+
+  const payload: JwtPayload = {
+    userId: user._id.toString(),
+    domain: user.domain,
+  };
+
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+};
+
+
+//get org user fn
+export const getDomainUsers = async (domain: string): Promise<IUser[]> => {
+  return User.find({ domain }).select('-password');
+};

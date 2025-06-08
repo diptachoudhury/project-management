@@ -1,22 +1,41 @@
-import { Request, Response } from "express";
-import { registerUser, loginUser } from "../services/auth.service";
+import { Request, Response } from 'express';
+import { registerUser, loginUser, getDomainUsers } from '../services/auth.service';
 
-export const register  = async( req:Request, res: Response) => {
-  try{
-    const { user, token } = await registerUser(req.body);
-    res.status(201).json({ success: true, data: { user, token }})
-  } catch(error:any){
-    res.status(400).json({ success: false, error: error.message});
-  } 
+
+ interface JwtPayload {
+  userId: string;
+  domain: string;
+}
+
+
+export const register = async (req: Request, res: Response) => {
+  try {
+    const { name, email, password, domain } = req.body;
+    const user = await registerUser(name, email, password, domain);
+    res.status(201).json({ message: 'User registered successfully', user });
+  } catch (error) {
+    res.status(400).json({ message: error instanceof Error ? error.message : 'Registration failed' });
+  }
 };
 
-
 export const login = async (req: Request, res: Response) => {
-    try{
-        const { email, password } = req.body;
-        const { user, token } = await loginUser(email, password);
-        res.status(200).json({ success:true, data: { user, password }});
-    } catch(error: any){
-        res.status(401).json({ success: false, error: error.message});
+  try {
+    const { email, password } = req.body;
+    const token = await loginUser(email, password);
+    res.json({ message: 'Login successful', token });
+  } catch (error) {
+    res.status(401).json({ message: error instanceof Error ? error.message : 'Login failed' });
+  }
+};
+
+export const getOrgUsers = async (req: Request & { user?: JwtPayload }, res: Response) => {
+  try {
+    if (!req.user) {
+      throw new Error('Unauthorized');
     }
-}
+    const users = await getDomainUsers(req.user.domain);
+    res.json(users);
+  } catch (error) {
+    res.status(400).json({ message: error instanceof Error ? error.message : 'Failed to fetch users' });
+  }
+};
