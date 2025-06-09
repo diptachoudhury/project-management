@@ -5,6 +5,7 @@ import { Document, Types  } from 'mongoose'
 
 
 
+
 interface IUser extends Document {
     _id: Types.ObjectId;
     name: string;
@@ -19,9 +20,10 @@ interface IUser extends Document {
   domain: string;
 }
 
+
 //register user fn
 export const registerUser = async (name: string, email: string, password: string, domain: string): Promise<IUser> => {
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ email }).select("+password");
   if (existingUser) {
     throw new Error('Email already in use');
   }
@@ -34,7 +36,10 @@ export const registerUser = async (name: string, email: string, password: string
 
 //login--fn
 export const loginUser = async (email: string, password: string): Promise<string> => {
-  const user = await User.findOne({ email });
+    console.log("[DEBUG] JWT_SECRET:", JWT_SECRET);
+  console.log("[DEBUG] JWT_EXPIRES_IN:", JWT_EXPIRES_IN); 
+  
+  const user = await User.findOne({ email }).select("+password"); // select or compare won't work
   if (!user) {
     throw new Error('Invalid credentials');
   }
@@ -49,9 +54,9 @@ export const loginUser = async (email: string, password: string): Promise<string
     domain: user.domain,
   };
 
+
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 };
-
 
 //get org user fn
 export const getDomainUsers = async (domain: string): Promise<IUser[]> => {

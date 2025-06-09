@@ -8,6 +8,7 @@ import { registerUser, loginUser, getDomainUsers } from '../services/auth.servic
 }
 
 
+
 export const register = async (req: Request, res: Response) => {
   try {
     const { name, email, password, domain } = req.body;

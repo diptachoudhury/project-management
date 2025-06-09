@@ -31,8 +31,7 @@ app.use(notFoundHandler);
 app.use(errorHandler)
 
 
-app.use("/api/auth", authRoutes);
-app.use("/api", taskRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
