@@ -20,6 +20,10 @@ interface IUser extends Document {
   domain: string;
 }
 
+interface LoginResponse {
+  user1: any; 
+  token: string;
+}
 
 //register user fn
 export const registerUser = async (name: string, email: string, password: string, domain: string): Promise<IUser> => {
@@ -35,10 +39,9 @@ export const registerUser = async (name: string, email: string, password: string
 
 
 //login--fn
-export const loginUser = async (email: string, password: string): Promise<string> => {
-    console.log("[DEBUG] JWT_SECRET:", JWT_SECRET);
-  console.log("[DEBUG] JWT_EXPIRES_IN:", JWT_EXPIRES_IN); 
-  
+export const loginUser = async (email: string, password: string): Promise<LoginResponse> => {
+   
+  let user1;
   const user = await User.findOne({ email }).select("+password"); // select or compare won't work
   if (!user) {
     throw new Error('Invalid credentials');
@@ -47,15 +50,21 @@ export const loginUser = async (email: string, password: string): Promise<string
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
     throw new Error('Invalid credentials');
-  }
+  } 
+    
+  
+  user1 = await User.findOne({email}).select("-password");
+  
+
+
 
   const payload: JwtPayload = {
     userId: user._id.toString(),
     domain: user.domain,
   };
 
-
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+  const token =  jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN }) 
+  return {user1, token};
 };
 
 //get org user fn

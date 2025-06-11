@@ -1,0 +1,26 @@
+app/
+  ├── (marketing)/
+  │   ├── layout.tsx        # Marketing layout (public pages)
+  │   └── page.tsx         # Home page with login
+  ├── (app)/
+  │   ├── [domain]/
+  │   │   ├── org-task/
+  │   │   │   └── page.tsx # Organization tasks
+  │   │   └── user-tasks/
+  │   │       └── page.tsx # User assigned tasks
+  │   ├── layout.tsx       # App layout (protected)
+  │   └── template.tsx     # App template (for transitions)
+  └── layout.tsx           # Root layout
+components/
+  ├── auth/
+  │   └── LoginForm.tsx    # Login component
+  ├── app/
+  │   ├── ModernSidebar.tsx # Modern sidebar
+  │   └── TopNav.tsx       # Top navigation
+  ├── marketing/
+  │   ├── Footer.tsx       # Marketing footer
+  │   ├── Hero.tsx         # Hero section
+  │   └── Navbar.tsx       # Marketing navbar
+  └── ui/
+      ├── Button.tsx       # Reusable button
+      └── Card.tsx         # Card component

@@ -1,29 +1,55 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from 'next/font/google';
-import { Providers } from "@/stores/providers";
-import { Toaster } from "react-hot-toast";
+import Footer from "../components/marketing/Footer";
+import { Metadata } from "next";
+import { Urbanist } from "next/font/google";
+import { Toaster } from 'react-hot-toast'; 
 
-const inter = Inter({subsets: ['latin']});
-
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
 
 export const metadata: Metadata = {
-  title: "Task Management App",
-  description: "A modern task management application",
+  title: "Ticket Management",
+  description: "A comprehensive ticket management app",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body  className={inter.className}>
-      <Providers>  
-        {children}
-        <Toaster position="top-right"/>
-      </Providers>
+      <body className={urbanist.className}>
+          <Toaster
+              position="top-right"
+              reverseOrder={false} 
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  background: '#363636',
+                  color: '#fff',
+                },
+                success: {
+                  style: {
+                    background: '#16a34a', 
+                    color: '#fff',
+                  },
+                },
+                error: {
+                  style: {
+                    background: '#dc2626',
+                    color: '#fff',
+                  },
+                },
+              }}
+            />
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

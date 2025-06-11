@@ -20,15 +20,18 @@ export const register = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
+ 
   try {
     const { email, password } = req.body;
-    const token = await loginUser(email, password);
-    res.json({ message: 'Login successful', token });
+    const {token, user1} = await loginUser(email, password);
+    
+    res.json({ message: 'Login successful', token, user1 });
+
   } catch (error) {
     res.status(401).json({ message: error instanceof Error ? error.message : 'Login failed' });
   }
 };
-
+ 
 export const getOrgUsers = async (req: Request & { user?: JwtPayload }, res: Response) => {
   try {
     if (!req.user) {
