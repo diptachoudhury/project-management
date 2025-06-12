@@ -5,6 +5,7 @@ import CompanyLogoMarquee from './CompanyLogoMarquee';
 import RegistratioForm from '../Registration';
 import LoginForm from '../Login';
 import { useState, useEffect } from 'react';
+import MarqueeSection from './Marquee';
 
 
 
@@ -17,7 +18,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
   }
  
   return (
-    <section className="relative pb-20 pt-16 bg-[#deebfe] lg:pt-24 lg:pb-32 overflow-hidden">
+    <section className="relative pb-10 pt-16 bg-[#deebfe] lg:pt-24 lg:pb-10 overflow-hidden">
      
       
       <div className="container mx-auto max-w-screen-lg px-4 relative z-10">
@@ -42,6 +43,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
                 </span>
               </div>
             </div>
+            <MarqueeSection/>
           </div>
 
           {/* Right Section: Jira Dashboard Mockup */}

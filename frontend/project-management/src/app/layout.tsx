@@ -3,6 +3,8 @@ import Footer from "../components/marketing/Footer";
 import { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { Toaster } from 'react-hot-toast'; 
+import TopNav from "../components/marketing/TopNav";
+import Sidebar from "../components/marketing/SideBar";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -47,7 +49,11 @@ export default function RootLayout({
               }}
             />
         <div className="flex flex-col min-h-screen">
+          <TopNav/>
+          <div className="flex">
+            {/* <Sidebar/> */}
           <main className="flex-1">{children}</main>
+          </div>
           <Footer />
         </div>
       </body>
