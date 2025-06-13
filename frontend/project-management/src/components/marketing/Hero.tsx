@@ -22,7 +22,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
      
       
       <div className="container mx-auto max-w-screen-lg px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
           {/* Left Section: Text and Signup Form */}
           <div className="lg:w-6/12 text-gray-900 text-center lg:text-left">
             <h1 className="text-3xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6">
@@ -47,7 +47,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
           </div>
 
           {/* Right Section: Jira Dashboard Mockup */}
-          <div className="lg:w-6/12 flex justify-center lg:justify-end mt-12 lg:mt-0">
+          <div className="flex  justify-center lg:justify-center">
             {/* The child will now be the image itself */}
             {children}
           </div>

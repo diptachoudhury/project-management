@@ -24,10 +24,9 @@ export default function CreateTicketModal({
   orgUsers,
   
 }: CreateTicketModalProps) {
-  // Form states
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [assigneeId, setAssigneeId] = useState<string>(''); // Stores the _id of the selected assignee
+  const [assigneeId, setAssigneeId] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   // Function to handle form submission
@@ -53,26 +52,22 @@ export default function CreateTicketModal({
 
       const response = await apiProtected.post('/tasks', payload); // API endpoint to create tasks
 
-      if (response.status === 201) { // Assuming 201 Created for successful task creation
-        toast.success('Ticket created successfully!');
-        // Clear form fields
+      if (response.status === 201) { // Assuming 201 Created for successful task creationd successfully!');
         setTitle('');
         setDescription('');
         setAssigneeId('');
-        onClose(); // Close the modal
+        onClose();
       } else {
-        // Handle non-201 status codes
         const errorMessage = response.data?.message || `Failed to create ticket with status: ${response.status}`;
         toast.error(errorMessage);
         console.error('API response with non-201 status:', response.status, response.data);
       }
     } catch (err: any) {
-      // Handle network or API errors
       const errorMessage = err.response?.data?.message || 'An unexpected error occurred while creating ticket.';
       toast.error(errorMessage);
       console.error('Error creating ticket:', err);
     } finally {
-      setIsSubmitting(false); // Re-enable the submit button
+      setIsSubmitting(false); 
     }
   };
 

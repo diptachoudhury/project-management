@@ -120,7 +120,7 @@ export default function TicketModal({ isOpen, onClose, ticket }: TicketModalProp
                     </div>
 
                     {/* Status Selection */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <h4 className="text-sm font-medium text-gray-500">Status</h4>
                       <select
                         className="mt-1 block w-full pl-3 pr-10 py-2 text-base border focus:outline-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
@@ -131,7 +131,7 @@ export default function TicketModal({ isOpen, onClose, ticket }: TicketModalProp
                         <option value="in-progress">In Progress</option>
                         <option value="completed">Completed</option>
                       </select>
-                    </div>
+                    </div> */}
 
                     {/* Created At Date */}
                     <div className="space-y-2">
@@ -149,12 +149,12 @@ export default function TicketModal({ isOpen, onClose, ticket }: TicketModalProp
                     >
                       Close
                     </button>
-                    <button
+                    {/* <button
                       type="button"
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
                       Save Changes
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </motion.div>

@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
 
         setEmail('');
         setPassword('');
-        // router.push('/login');
+         router.push('/tasks');
        }else {
         const errorMessage = response.data?.message || 'Invalid Credentials';
         toast.error(`Login: ${errorMessage}`);

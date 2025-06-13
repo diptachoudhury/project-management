@@ -1,10 +1,8 @@
+
 import "./globals.css";
-import Footer from "../components/marketing/Footer";
 import { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { Toaster } from 'react-hot-toast'; 
-import TopNav from "../components/marketing/TopNav";
-import Sidebar from "../components/marketing/SideBar";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -15,6 +13,9 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   title: "Ticket Management",
   description: "A comprehensive ticket management app",
+  icons: {
+    icon: '/favicon.svg'
+  },
 };
 
 export default function RootLayout({
@@ -48,14 +49,7 @@ export default function RootLayout({
                 },
               }}
             />
-        <div className="flex flex-col min-h-screen">
-          <TopNav/>
-          <div className="flex">
-            {/* <Sidebar/> */}
-          <main className="flex-1">{children}</main>
-          </div>
-          <Footer />
-        </div>
+          <main>{children}</main>
       </body>
     </html>
   );

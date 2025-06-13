@@ -50,9 +50,7 @@ function ReviewCard({ review }: { review: Review }) {
         <div className="p-2 rounded-full mb-4 border-2 border-white shadow-md font-medium text-cyan-800">
             {review.reviewerAvatar}
         </div>
-        <h3 className={`text-sm font-bold mb-1 ${reviewerNameColor}`}>
-          {review.reviewerName}
-        </h3>
+
         <p className={`text-xs ${reviewerTitleColor}`}> {/* Decreased from text-md */}
           {review.reviewerTitle}
         </p>

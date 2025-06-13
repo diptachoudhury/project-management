@@ -179,9 +179,18 @@ export default function MyTasksPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center text-4xl font-extrabold text-gray-900 mt-8 mb-12">
-          My Assigned Tasks
-        </div>
+ 
+                  <div className="w-full flex justify-between max-w-7xl mx-auto">
+            <div className="text-left pt-8 pb-12"> {/* Changed to text-left */}
+              <h1 className="text-3xl font-bold text-gray-900 mb-2"> {/* Using h1 for main title, adjusted size/weight */}
+               My Assigned Tasks
+              </h1>
+              <p className="text-sm text-gray-400 w-1/2"> {/* Added description */}
+                This section displays all the active tasks and issues within your current sprint for the selected domain.
+                Track progress, add tickets, and prioritize work efficiently.
+              </p>
+            </div>
+            </div>
 
         {tasks.length === 0 && !loading && !error ? (
           <div className="text-center p-10 bg-white rounded-lg shadow-md">

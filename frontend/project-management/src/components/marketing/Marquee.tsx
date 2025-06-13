@@ -30,7 +30,7 @@ export default function MarqueeSection() {
                 alt={logo.alt}
                 width={60} // Adjust width as needed for your logos
                 height={30}
-                className="object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300"
+                className="object-contain  opacity-70 hover:opacity-100 transition-opacity duration-300"
               />
             </div>
           ))}

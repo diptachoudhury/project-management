@@ -27,7 +27,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
-    req.user = decoded; // Attach decoded JWT payload to request
+    req.user = decoded;
 
     const userFromDb = await User.findById(req.user.userId);
 
