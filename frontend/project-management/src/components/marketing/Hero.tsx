@@ -25,10 +25,10 @@ export default function HeroSection({ children }: { children: ReactNode }) {
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
           {/* Left Section: Text and Signup Form */}
           <div className="lg:w-6/12 text-gray-900 text-center lg:text-left">
-            <h1 className="text-3xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6">
-              Connect every team, task, and project together with Jira
+            <h1 className="text-3xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-2">
+             Manage and resolve every ticket, task, and issue with Ticket Bucket
             </h1>
-            <div className="mt-8 max-w-lg mx-auto lg:mx-0">
+            <div className="mt-4 max-w-lg mx-auto lg:mx-0">
              {toggleAuth && <RegistratioForm/> }
 
               {!toggleAuth && <LoginForm/> }

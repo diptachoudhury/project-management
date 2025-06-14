@@ -86,7 +86,7 @@ export default function Sidebar() {
             <div className="p-4 border-b border-gray-200 flex items-center" style={{ minHeight: '64px' }}>
               {isOpen && 
                 <Link href="/" onClick={() => setIsOpen(false)} className="flex-grow">
-                  <h1 className="text-xl font-extrabold text-blue-400 whitespace-nowrap overflow-hidden">Ticket Bucket</h1>
+                  <h1 className="text-xl font-extrabold text-blue-600 whitespace-nowrap overflow-hidden">Ticket Bucket</h1>
                 </Link>}
               <button
                 onClick={toggleSidebar}
@@ -100,7 +100,17 @@ export default function Sidebar() {
             <nav className="p-4 space-y-2 overflow-y-auto">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname.startsWith(item.href);
+                let isActive = false;
+
+if (item.href === '/') {
+  isActive = pathname === '/';
+}
+else if (item.name === 'DashBoard') {
+  isActive = pathname.startsWith('/tickets'); 
+}
+else {
+  isActive = pathname.startsWith(item.href);
+}
 
                 return (
                   <Link key={item.href} href={item.href} >
@@ -137,7 +147,7 @@ export default function Sidebar() {
               const Icon = item.icon;
               return (
                 
-                  <div key={index} className="flex items-center p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-200">
+                  <div key={index} className=" cursor-pointer flex items-center p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-all duration-200">
                     <Icon className="w-5 h-5" style={{ marginRight: isOpen ? '0.75rem' : '0' }} />
                     <AnimatePresence>
                       {isOpen && (

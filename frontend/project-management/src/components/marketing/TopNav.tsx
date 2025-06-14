@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import apiProtected from '../../lib/axiosProtected';
+import { Ticket } from 'lucide-react';
 
 interface UserInfo {
   _id: string;
@@ -86,12 +87,9 @@ export default function TopNav() {
             {domainName}
           </button>
           </Link> : 
-             <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800  e  font-normal rounded-lg text-xs p-2 px-4 text-center   transition-colors duration-200"
-          >
-            Login
-          </button>}
+ <div className="flex justify-center items-center w-full">
+                  <Ticket className="w-6 h-6 text-gray-400" />
+                </div>}
        
           
           {/* Mobile Menu Button (Hamburger Icon) */}

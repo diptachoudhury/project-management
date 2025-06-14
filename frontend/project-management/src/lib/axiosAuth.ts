@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const apiAuth = axios.create({
-    baseURL: "http://localhost:5000/api/",
+    baseURL: "https://api-ticket-bucket.onrender.com/api/",
     timeout: 10000,
 });
 

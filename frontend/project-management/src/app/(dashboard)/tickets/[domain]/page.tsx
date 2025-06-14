@@ -163,7 +163,7 @@ export default function OrgTickets({
                 transition={{ duration: 1 }}
                 className="bg-[#f1f2f6] rounded-xl shadow-lg border border-gray-200 overflow-hidden"
                >
-                <div className="p-4 border-b border-gray-200 bg-[#6366f1]">
+                <div className="p-4 border-b border-gray-200 bg-gray-500">
                       <h2 className="font-medium text-white capitalize flex items-center">
                         <span className={`inline-block w-3 h-3 rounded-full mr-2 ${
                     status === 'pending' ? 'bg-red-500' :

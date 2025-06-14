@@ -208,7 +208,7 @@ export default function MyTasksPage() {
                 className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
               >
                 {/* Column Header */}
-                <div className={`p-4 border-b border-gray-200 bg-[#6366f1]`}>
+                <div className={`p-4 border-b border-gray-200 bg-gray-500`}>
                   <h2 className="font-medium text-white capitalize flex items-center">
                     <span className={`inline-block w-3 h-3 rounded-full mr-2 ${
                       status === 'pending' ? 'bg-red-500' : // Lighter shade for contrast on dark background
