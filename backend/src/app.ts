@@ -16,7 +16,7 @@ const app = express();
 connectDB();
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000',],
+  origin: ['http://localhost:3000', 'https://ticket-bucket-orcin-seven.vercel.app/',],
   credentials: true, 
 }));
 app.use(express.json());
