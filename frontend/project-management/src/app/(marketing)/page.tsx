@@ -1,10 +1,8 @@
 'use client';
 
 import HeroSection from '../../components/marketing/Hero';
-import FeaturesSection from '../../components/marketing/FeatureSection';
 import HomePageSections from '../../sections/Features';
 import ReviewSection from '../../components/marketing/Review';
-import Image from 'next/image';
 import Lottie from 'lottie-react';
 import Hero from '../../components/Lottie.json';
 
