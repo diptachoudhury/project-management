@@ -1,6 +1,5 @@
 'use client';
 
-import { OpacityIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +18,6 @@ interface FeatureProps {
 
 
 function FeatureSection({
-    id,
   heading,
   description,
   buttonText,

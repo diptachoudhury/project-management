@@ -1,26 +1,18 @@
-'use client'; // This component requires client-side execution for interactivity (if any, though not strictly needed for static display)
-
+'use client';
 import React from 'react';
-import Image from 'next/image'; // For optimized reviewer avatars
-import { motion } from 'framer-motion'; // For subtle entry animations
+import { motion } from 'framer-motion';
 
-// Interface for a single review's data
 interface Review {
   id: string;
   quote: string;
   reviewerName: string;
   reviewerTitle: string;
-  reviewerAvatar: string; // URL to the avatar image
-  // bgColorClass is removed as all cards will have consistent background
-}
+  reviewerAvatar: string; }
 
-// Reusable ReviewCard component
 function ReviewCard({ review }: { review: Review }) {
-  // Define consistent background and text colors for all cards
   const cardBgClass = 'bg-white text-gray-600'; // Consistent white background with gray text
   const quoteIconColor = 'text-blue-500'; // Quote icon is blue (as per original image's white card)
-  const textColor = 'text-gray-600'; // General text is gray-600
-  const reviewerNameColor = 'text-gray-900'; // Reviewer name slightly darker
+  const textColor = 'text-gray-600'; 
   const reviewerTitleColor = 'text-gray-500'; // Lighter gray for title
 
   return (

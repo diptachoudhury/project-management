@@ -1,6 +1,5 @@
 'use client'
 
-import { Fragment } from 'react'
 import { motion, AnimatePresence } from 'framer-motion' // Import motion and AnimatePresence from framer-motion
 
 interface TicketModalProps {

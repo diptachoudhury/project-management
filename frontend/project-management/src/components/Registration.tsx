@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import apiAuth from '../lib/axiosAuth';
 import { z } from 'zod';
 
@@ -36,7 +35,6 @@ const RegistrationForm: React.FC = () => {
     domain: false
   });
 
-  const router = useRouter();
 
   const validateField = (fieldName: keyof FormErrors, value: string) => {
     const result = registrationSchema.shape[fieldName].safeParse(value);

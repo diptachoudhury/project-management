@@ -151,14 +151,7 @@ export default function MyTasksPage() {
   };
 
   // Helper function for column header background colors
-  const getColumnHeaderBgColor = (status: keyof typeof statusGroups) => {
-    switch (status) {
-      case 'pending': return 'bg-red-500';
-      case 'in-progress': return 'bg-yellow-500';
-      case 'completed': return 'bg-green-500';
-      default: return 'bg-gray-500';
-    }
-  };
+
 
   if (loading) {
     return (

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, Ticket, User, PlusCircle, Settings, LogOut, X, Menu } from 'lucide-react';
+import { Home, Ticket, User, PlusCircle,  LogOut, X, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 import apiProtected from '../../lib/axiosProtected';

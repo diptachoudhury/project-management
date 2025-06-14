@@ -2,7 +2,6 @@
 
 import apiProtected from "../../../../lib/axiosProtected";
 import { useEffect, useState } from "react";
-import { GoArrowLeft } from "react-icons/go";
 import { motion } from 'framer-motion';
 import TicketCard from '../../../../components/TicketCard';
 import CreateTicketModal from "../../../../components/models/CreateTicketModal";

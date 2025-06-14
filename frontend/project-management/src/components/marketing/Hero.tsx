@@ -1,10 +1,9 @@
 'use client';
 
 import { ReactNode } from 'react';
-import CompanyLogoMarquee from './CompanyLogoMarquee';
 import RegistratioForm from '../Registration';
 import LoginForm from '../Login';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MarqueeSection from './Marquee';
 
 

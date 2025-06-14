@@ -15,8 +15,8 @@ interface UserInfo {
 }
 
 export default function TopNav() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<Boolean>(false);
- const [scrolled, setScrolled] = useState<Boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+ const [scrolled, setScrolled] = useState<boolean>(false);
  const [domainName, setDomainName] = useState<string>('');
 
 

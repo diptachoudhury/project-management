@@ -1,17 +1,13 @@
-'use client'; // This component uses React Hooks and client-side interactivity
-
-import { Fragment, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // For animations
-import toast from 'react-hot-toast'; // For notifications
-import apiProtected from '../../lib/axiosProtected'; // Your authenticated API client
-
-// Interface for a simplified User object, as needed by the modal
+'use client'; 
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; 
+import toast from 'react-hot-toast';
+import apiProtected from '../../lib/axiosProtected'; 
 interface User {
   _id: string;
   name: string;
 }
 
-// Props for the CreateTicketModal component
 interface CreateTicketModalProps {
   isOpen: boolean; 
   onClose: () => void;
@@ -52,7 +48,7 @@ export default function CreateTicketModal({
 
       const response = await apiProtected.post('/tasks', payload); // API endpoint to create tasks
 
-      if (response.status === 201) { // Assuming 201 Created for successful task creationd successfully!');
+      if (response.status === 201) { 
         setTitle('');
         setDescription('');
         setAssigneeId('');
@@ -75,7 +71,6 @@ export default function CreateTicketModal({
     <AnimatePresence>
       {isOpen && (
         <div className="relative z-50">
-          {/* Overlay / Backdrop */}
           <motion.div
             className="fixed inset-0 bg-black bg-opacity-25"
             initial={{ opacity: 0 }}

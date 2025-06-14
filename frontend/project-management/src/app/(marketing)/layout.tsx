@@ -2,7 +2,6 @@
 import "../globals.css";
 import Footer from "../../components/marketing/Footer";
 import TopNav from "../../components/marketing/TopNav";
-import Sidebar from "../../components/marketing/SideBar";
 
 
 export default function MarketingLayout({
