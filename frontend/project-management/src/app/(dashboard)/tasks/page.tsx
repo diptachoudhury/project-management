@@ -105,7 +105,7 @@ function TaskCard({ task, onStatusUpdate }: TaskCardProps) {
           <option value="in-progress">In Progress</option>
           <option value="completed">Completed</option>
         </select>
-      </div>
+      </div> 
     </div>
   );
 }
