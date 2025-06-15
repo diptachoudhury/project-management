@@ -74,7 +74,7 @@ export default function Sidebar() {
     <>
 
 
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} >
         <motion.aside
           className="fixed inset-y-0 left-0 bg-[#fafbff] text-white flex flex-col justify-between shadow-lg z-40
                      md:relative md:translate-x-0 md:flex md:h-screen"
@@ -168,7 +168,7 @@ else {
           </nav>
         </motion.aside>
       </AnimatePresence>
-      {!isOpen && (
+      {/* {!isOpen && (
         <motion.div
           className="fixed inset-0   md:hidden"
           initial={{ opacity: 0 }}
@@ -176,7 +176,7 @@ else {
           exit={{ opacity: 0 }}
           onClick={toggleSidebar}
         />
-      )}
+      )} */}
     </>
   );
 }
