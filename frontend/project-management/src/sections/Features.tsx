@@ -93,7 +93,7 @@ export default function HomePageSections() {
       buttonLink: '/tickets/my-tasks',
       imageUrl: '/Element.png',
       imageAlt: 'Task Management Interface',
-      imageOnLeft: false, // Text on left, Image on right
+      imageOnLeft: false, 
     },
     {
       id: 2,
@@ -103,7 +103,7 @@ export default function HomePageSections() {
       buttonLink: '/members',
       imageUrl: '/Work-Together.png',
       imageAlt: 'Team Collaboration Dashboard',
-      imageOnLeft: true, // Image on left, Text on right
+      imageOnLeft: true, 
     },
   ];
 
