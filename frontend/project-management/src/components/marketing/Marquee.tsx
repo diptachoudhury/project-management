@@ -12,7 +12,7 @@ const companyLogos = [
 
 export default function MarqueeSection() {
   return (
-    <section className="bg-transparent py-6 overflow-hidden">
+    <section className="bg-transparent py-6 overflow-hidden flex justify-center lg:justify-start">
 
 
       <div className="w-2/3">
@@ -21,7 +21,7 @@ export default function MarqueeSection() {
           speed={40}
           pauseOnHover={false}
           loop={0} 
-          className="py-4" 
+          className="py-2" 
         >
           {companyLogos.map((logo, index) => (
             <div key={index} className="flex items-center justify-center mx-6 md:mx-6">

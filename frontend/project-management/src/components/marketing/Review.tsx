@@ -59,30 +59,27 @@ export default function ReviewSection() {
       quote: ' Ticket Bucket is designed as a collaboration tool for businesses that is a full project management solution.',
       reviewerName: 'Oberon Shaw, MCH',
       reviewerTitle: 'Head of Talent Acquisition, North America',
-      reviewerAvatar: 'AB', // Placeholder for avatar
-      // bgColorClass removed
+      reviewerAvatar: 'AB', 
     },
     {
       id: '2',
       quote: ' Ticket Bucket is designed as a collaboration tool for businesses that is a full project management solution.',
       reviewerName: 'Oberon Shaw, MCH',
       reviewerTitle: 'Head of Talent Acquisition, North America',
-      reviewerAvatar: 'JAY', // Placeholder for avatar
-      // bgColorClass removed
+      reviewerAvatar: 'JAY', 
     },
     {
       id: '3',
       quote: ' Ticket Bucket is designed as a collaboration tool for businesses that is a full project management solution.',
       reviewerName: 'Oberon Shaw, MCH',
       reviewerTitle: 'Head of Talent Acquisition, North America',
-      reviewerAvatar: 'KL', // Placeholder for avatar
-      // bgColorClass removed
+      reviewerAvatar: 'KL', 
     },
-    // Add more reviews here if needed
+
   ];
 
   return (
-    <section className="bg-gray-50 py-12 md:py-12">
+    <section className="bg-gray-50 py-12 md:py-12 text-gray-600">
       <div className="container mx-auto max-w-screen-lg px-6">
         {/* Section Heading */}
         <div className="text-center mb-12 md:mb-12">

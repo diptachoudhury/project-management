@@ -107,7 +107,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-start justify-start max-h-screen p-4 pl-0">
+    <div className="flex flex-col items-center lg:items-start justify-start max-h-screen p-4 pl-0">
       <h2 className="text-lg font-semibold text-gray-700 text-center mb-4">
         Register with your email
       </h2>
@@ -127,7 +127,7 @@ const RegistrationForm: React.FC = () => {
             } rounded-3xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150`}
           />
           {errors.name && touched.name && (
-            <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+            <p className="mt-1 ml-6 md:ml:0 text-sm text-red-600">{errors.name}</p>
           )}
         </div>
 
@@ -145,7 +145,7 @@ const RegistrationForm: React.FC = () => {
             } rounded-3xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150`}
           />
           {errors.email && touched.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+            <p className="mt-1 ml-6 md:ml:0 text-sm text-red-600">{errors.email}</p>
           )}
         </div>
 

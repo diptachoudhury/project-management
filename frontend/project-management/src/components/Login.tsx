@@ -48,10 +48,10 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Mark all fields as touched on submit
+
     setTouched({ email: true, password: true });
     
-    // Validate all fields
+    
     const isEmailValid = validateField('email', email);
     const isPasswordValid = validateField('password', password);
     
@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-start justify-start max-h-screen p-4 pl-0">
+    <div className="flex flex-col items-center lg:items-start justify-start max-h-screen p-4 pl-0">
       <h2 className="text-lg font-semibold text-gray-700 text-center mb-4">
         Login to your Organisation
       </h2>
@@ -98,10 +98,10 @@ const LoginForm: React.FC = () => {
             placeholder="Enter your email"
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.email ? 'border-red-500' : 'border-gray-300'
-            } rounded-3xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150`}  
+            } rounded-3xl shadow-sm focus:border-blue-500 sm:text-sm transition duration-150`}  
           />
           {errors.email && touched.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+            <p className="ml-6 md:ml:0 mt-1  text-sm text-red-600">{errors.email}</p>
           )}
         </div>
 
@@ -122,7 +122,7 @@ const LoginForm: React.FC = () => {
             } rounded-3xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out`}
           />
           {errors.password && touched.password && (
-            <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+            <p className="ml-6 md:ml:0 mt-1 text-sm text-red-600">{errors.password}</p>
           )}
         </div>
 

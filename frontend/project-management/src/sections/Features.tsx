@@ -108,7 +108,7 @@ export default function HomePageSections() {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-16">
+    <div className=" bg-white px-6 py-16">
       {features.map((feature) => (
         <FeatureSection key={feature.id} {...feature} />
       ))}

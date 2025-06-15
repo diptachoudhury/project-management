@@ -17,7 +17,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
   }
  
   return (
-    <section className="relative pb-10 pt-16 bg-[#deebfe] lg:pt-24 lg:pb-10 overflow-hidden">
+    <section className="relative pb-10 pt-20 bg-[#deebfe] lg:pt-24 lg:pb-10 overflow-hidden">
      
       
       <div className="container mx-auto max-w-screen-lg px-4 relative z-10">
@@ -27,7 +27,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
             <h1 className="text-3xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-2">
              Manage and resolve every ticket, task, and issue with Ticket Bucket
             </h1>
-            <div className="mt-4 max-w-lg mx-auto lg:mx-0">
+            <div className="mt-4 max-w-lg mx-auto ">
              {toggleAuth && <RegistratioForm/> }
 
               {!toggleAuth && <LoginForm/> }
@@ -35,14 +35,15 @@ export default function HeroSection({ children }: { children: ReactNode }) {
 
 
               {/* Login link */}
-              <div className="mt-4 text-left lg:text-left text-gray-600">
+              <div className="mt-4 text-center lg:text-left text-gray-600">
                 {toggleAuth?  "Already have an account? " : "Register with your email "}
                 <span className="text-blue-600 hover:underline cursor-pointer" onClick={toggle}>
                   {toggleAuth? "Log in" : "Register"}
                 </span>
               </div>
+                <MarqueeSection/>
             </div>
-            <MarqueeSection/>
+          
           </div>
 
           {/* Right Section: Jira Dashboard Mockup */}

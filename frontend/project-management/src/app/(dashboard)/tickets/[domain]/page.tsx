@@ -150,7 +150,7 @@ export default function OrgTickets({
                 Track progress, add tickets, and prioritize work efficiently.
               </p>
             </div>
-            <div className="pt-12 pb-12"> <span className="text-gray-700  text-sm font-extrabold p-4 bg-gray-200 rounded-2xl">{decodeURIComponent(domain).replace(/\s+/g, '-')}</span></div>
+            <div className="pt-12 pb-12"> <div className="text-gray-700  text-xs font-extrabold p-4 bg-gray-200 rounded-2xl">{decodeURIComponent(domain).replace(/\s+/g, '-')}</div></div>
           </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
