@@ -90,7 +90,7 @@ function TaskCard({ task, onStatusUpdate }: TaskCardProps) {
       </div>
 
       {/* Status Update Dropdown */}
-      <div>
+      <div className='text-gray-900'>
         <label htmlFor={`status-select-${task._id}`} className="block text-xs font-medium text-gray-500 mb-1">
           Update Status
         </label>
