@@ -145,7 +145,7 @@ export default function OrgTickets({
               <h1 className="text-3xl font-bold text-gray-900 mb-2"> {/* Using h1 for main title, adjusted size/weight */}
                 Board 
               </h1>
-              <p className="text-sm text-gray-400 w-1/2"> {/* Added description */}
+              <p className="text-sm text-gray-400 w-1/2"> {/* Added description */} 
                 This section displays all the active tasks and issues within your current sprint for the selected domain.
                 Track progress, add tickets, and prioritize work efficiently.
               </p>
