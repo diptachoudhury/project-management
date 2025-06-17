@@ -7,6 +7,18 @@ import TicketCard from '../../../../components/TicketCard';
 import CreateTicketModal from "../../../../components/models/CreateTicketModal";
 import {use} from 'react';
 
+
+interface RandomTask {
+    id: string;
+    key: string;
+    summary: string; 
+    description: string;
+    issue_type: string;
+    status: string;
+    priority: string;
+}
+
+
 interface Ticket {
     _id: string;
     title: string;
@@ -65,7 +77,19 @@ try {
  }
 }
 
-
+async function fetchRandomTask(): Promise<RandomTask> {
+    try {
+        const res = await fetch('https://random-task.onrender.com/random_task'); // Use fetch for external API
+        if (!res.ok) {
+            const errorText = await res.text(); 
+            throw new Error(`Failed to fetch random task: ${res.status} - ${errorText}`);
+        }
+        return res.json();
+    } catch (error: any) {
+        console.error('Error fetching random task:', error);
+        throw error;
+    }
+}
 
 export default function OrgTickets({
     params
@@ -79,6 +103,13 @@ export default function OrgTickets({
     const [orgUsers, setOrgUsers] = useState<User[]>([]);
     
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); 
+
+      // --- New State for Random Task ---
+    const [randomTaskSummary, setRandomTaskSummary] = useState<string | null>(null);
+    const [randomTaskLoading, setRandomTaskLoading] = useState<boolean>(false);
+    const [randomTaskError, setRandomTaskError] = useState<string | null>(null);
+    const [copySuccess, setCopySuccess] = useState<boolean>(false);
+    // --- End New State ---
 
  const toggleModal = () => setIsModalOpen(!isModalOpen);
  const {domain} =use(params);
@@ -102,6 +133,39 @@ export default function OrgTickets({
         }
         loadTickets();
     }, [])
+
+  // --- New Function to Handle Random Task Generation ---
+    const handleGenerateRandomTask = async () => {
+        setRandomTaskLoading(true);
+        setRandomTaskError(null);
+        setCopySuccess(false); 
+        try {
+            const task = await fetchRandomTask();
+            setRandomTaskSummary(task.summary);
+        } catch (err: any) {
+            setRandomTaskError(err.message || 'Failed to fetch random task.');
+        } finally {
+            setRandomTaskLoading(false);
+        }
+    };
+    // --- End New Function ---
+
+    // --- New Function to Copy Summary ---
+    const handleCopySummary = async () => {
+        if (randomTaskSummary) {
+            try {
+                await navigator.clipboard.writeText(randomTaskSummary);
+                setCopySuccess(true);
+                setTimeout(() => setCopySuccess(false), 6000); 
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+              
+            }
+        }
+    };
+    // --- End New Function ---
+
+
 
     if(loading) {
         return (
@@ -149,6 +213,43 @@ export default function OrgTickets({
                 This section displays all the active tasks and issues within your current sprint for the selected domain.
                 Track progress, add tickets, and prioritize work efficiently.
               </p>
+              {/* --- Random Task Section --- */}
+                        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg shadow-inner">
+                            <h3 className="text-lg font-bold text-blue-800 mb-3">Feeling Stuck? Get a Random Task!</h3>
+                            <button
+                                onClick={handleGenerateRandomTask}
+                                className="text-sm bg-blue-600 hover:bg-blue-700 text-white  py-2 px-4 rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled={randomTaskLoading}
+                            >
+                                {randomTaskLoading ? 'Generating...' : 'Generate Random Task'}
+                            </button>
+
+                            {randomTaskError && (
+                                <p className="text-red-500 text-sm mt-2">{randomTaskError}</p>
+                            )}
+
+                            {randomTaskSummary && (
+                                <div className="mt-4 p-3 bg-white border border-gray-300 rounded-md flex items-center justify-between shadow-sm">
+                                    <p className="text-gray-600 font-md font-medium break-words pr-2">{randomTaskSummary}</p>
+                                    <button
+                                        onClick={handleCopySummary}
+                                        className="ml-2 p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded"
+                                        title="Copy Summary"
+                                    >
+                                        {copySuccess ? (
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                        ) : (
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6v2m-2-2h0v2" />
+                                            </svg>
+                                        )}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        {/* --- End Random Task Section --- */}
             </div>
             <div className="pt-12 pb-12"> <div className="text-gray-700  text-xs font-extrabold p-4 bg-gray-200 rounded-2xl">{decodeURIComponent(domain).replace(/\s+/g, '-')}</div></div>
           </div>
