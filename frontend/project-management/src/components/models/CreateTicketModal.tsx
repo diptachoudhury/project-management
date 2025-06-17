@@ -111,7 +111,7 @@ export default function CreateTicketModal({
                   </div>
 
                   {/* Form */}
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4 text-gray-600">
                     <div>
                       <label htmlFor="title" className="block text-sm font-medium text-gray-700">Ticket Title</label>
                       <input
