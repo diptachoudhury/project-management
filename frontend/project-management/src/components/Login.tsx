@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import apiAuth from '../lib/axiosAuth';
 import { z } from 'zod';
+import { FaCopy, FaInfoCircle } from 'react-icons/fa';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -28,9 +29,12 @@ const LoginForm: React.FC = () => {
 
   const router = useRouter();
 
+  const demoEmail = 'alice@tech.com';
+  const demoPassword = 'qwerty1234';
+
   const validateField = (fieldName: keyof FormErrors, value: string) => {
     const result = loginSchema.shape[fieldName].safeParse(value);
-    
+
     if (result.success) {
       setErrors(prev => ({ ...prev, [fieldName]: undefined }));
       return true;
@@ -47,14 +51,12 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
 
     setTouched({ email: true, password: true });
-    
-    
+
     const isEmailValid = validateField('email', email);
     const isPasswordValid = validateField('password', password);
-    
+
     if (!isEmailValid || !isPasswordValid) return;
 
     setLoading(true);
@@ -77,6 +79,16 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  const handleCopy = async (text: string, type: 'Email' | 'Password') => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success(`${type} copied to clipboard!`);
+    } catch (err) {
+      toast.error(`Failed to copy ${type.toLowerCase()}.`);
+      console.error(`Failed to copy ${type.toLowerCase()}: `, err);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center lg:items-start justify-start max-h-screen p-4 pl-0">
       <h2 className="text-lg font-semibold text-gray-700 text-center mb-4">
@@ -84,6 +96,40 @@ const LoginForm: React.FC = () => {
       </h2>
 
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 w-3/4">
+
+        <div className="flex items-start ">
+          <div className=" bg-blue-50 p-3 rounded-lg shadow-sm ">
+            <p className="text-xs font-medium text-gray-800 flex items-center">
+              <span className="font-semibold mr-2">Email:</span> {demoEmail}
+              <button
+                type="button"
+                onClick={() => handleCopy(demoEmail, 'Email')}
+                className="ml-2 p-1 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Copy email"
+              >
+                <FaCopy size={12} />
+              </button>
+            </p>
+            <p className="text-xs font-medium text-gray-800 flex items-center mt-1">
+              <span className="font-bold mr-2">Password:</span> {demoPassword}
+              <button
+                type="button"
+                onClick={() => handleCopy(demoPassword, 'Password')}
+                className="ml-2 p-1 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Copy password"
+              >
+                <FaCopy size={12} />
+              </button>
+            </p>
+          </div>
+          <div className="relative group ml-2 mt-1.5">
+            <FaInfoCircle className="text-blue-600 cursor-help text-xs" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 w-48 p-2 text-xs text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              For a quick look without registering, just copy and paste these credentials.
+            </div>
+          </div>
+        </div>
+
         <div>
           <input
             type="email"
@@ -98,10 +144,10 @@ const LoginForm: React.FC = () => {
             placeholder="Enter your email"
             className={`mt-1 block w-full px-4 py-2 border ${
               errors.email ? 'border-red-500' : 'border-gray-300'
-            } rounded-3xl shadow-sm focus:border-blue-500 sm:text-sm transition duration-150`}  
+            } rounded-3xl shadow-sm focus:border-blue-500 sm:text-sm transition duration-150`}
           />
           {errors.email && touched.email && (
-            <p className="ml-6 md:ml:0 mt-1  text-sm text-red-600">{errors.email}</p>
+            <p className="ml-6 md:ml:0 mt-1 text-sm text-red-600">{errors.email}</p>
           )}
         </div>
 
